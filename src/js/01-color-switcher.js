@@ -12,7 +12,7 @@ startBtn.addEventListener("click", () => {
         bodyEl.style.backgroundColor = getRandomHexColor();
         // startBtn.disabled = false;
         // stopBtn.disabled = true; 
-        startBtn.setAttribute('disabled', "");
+        startBtn.setAttribute('disabled', 'true');
         stopBtn.removeAttribute('disabled');
   }, 1000);
 });
@@ -21,7 +21,7 @@ stopBtn.addEventListener("click", () => {
     clearInterval(timerId);
     // stopBtn.disabled = false;
     // startBtn.disabled = true
-    stopBtn.setAttribute('disabled', '');
+    stopBtn.setAttribute('disabled', 'true');
     startBtn.removeAttribute('disabled');
 
 });
