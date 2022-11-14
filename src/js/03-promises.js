@@ -8,25 +8,27 @@ function onFormSubmit(event) {
   let delayValue = Number(delay.value);
   let stepValue = Number(step.value);
   let amountValue = Number(amount.value);
-  for (let i = 1; i <= amountValue; i += 1) {    
-
-    createPromise(i, delayValue);
+  for (let i = 1; i <= amountValue; i += 1) {
+    createPromise(i, delayValue).then(({ position, delay }) => {
+      Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
+    }).catch(({ position, delay }) => {
+      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
+    });
+    delayValue += stepValue;
   }
+}
+function createPromise(position, delay) {
+  const object = { position, delay };
+  const shouldResolve = Math.random() > 0.3;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve(object);
+      } else {
+        reject(object);
+      }
+    }, delay);
   
-  function createPromise(position, delayValue){
-    const shouldResolve = Math.random() > 0.3;
-    const object = {position, delayValue}
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (shouldResolve) {
-            Notify.success(`✅ Fulfilled promise ${position} in ${delayValue}ms`);
-            resolve(object)
-          } else {
-            Notify.failure(`❌ Rejected promise ${position} in ${delayValue}ms`);
-            reject(object)
-          }
-          delayValue += stepValue
-        }, delayValue)
-      })
-    }
+  })
   }
+
