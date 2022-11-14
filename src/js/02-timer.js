@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+
 const refs = {
     input:  document.querySelector('#datetime-picker'),
     startButton: document.querySelector('button'),
@@ -38,7 +39,7 @@ function changeTimerValue() {
         let restTime = new Date(refs.input.value) - new Date()
        
         // console.log(restTime)
-        if (restTime <= 0) { clearInterval(timerId) }
+        if (restTime <= 1000) { clearInterval(timerId) }
         let timerInfo = convertMs(restTime);
         // console.log(timerInfo);
         
@@ -73,4 +74,4 @@ function convertMs(ms) {
 }        
 
 flatpickr(refs.input, options);
-console.log(new Date());
+// console.log(new Date());

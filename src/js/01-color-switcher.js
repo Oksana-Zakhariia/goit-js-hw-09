@@ -8,6 +8,7 @@ function getRandomHexColor() {
 
 
 startBtn.addEventListener("click", () => {
+  stopBtn.setAttribute('disabled','true')
     timerId = setInterval(() => {
         bodyEl.style.backgroundColor = getRandomHexColor();
         // startBtn.disabled = false;
