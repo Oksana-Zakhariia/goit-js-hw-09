@@ -8,12 +8,14 @@ function onFormSubmit(event) {
   let delayValue = Number(delay.value);
   let stepValue = Number(step.value);
   let amountValue = Number(amount.value);
-  for (let i = 1; i <= amountValue; i += 1) {
+  for (let i = 1; i <= amountValue; i += 1) {    
 
-    createPromise(position, delay);
+    createPromise(i, delayValue);
+  }
   
-  function createPromise(position, delay){
-      const shouldResolve = Math.random() > 0.3;
+  function createPromise(position, delayValue){
+    const shouldResolve = Math.random() > 0.3;
+    const object = {position, delayValue}
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           if (shouldResolve) {
@@ -24,8 +26,7 @@ function onFormSubmit(event) {
             reject(object)
           }
           delayValue += stepValue
-        }, delay)
+        }, delayValue)
       })
-    };
+    }
   }
-}
